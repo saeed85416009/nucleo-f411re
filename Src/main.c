@@ -66,6 +66,7 @@ extern void initialise_monitor_handles(void);
   */
 int main(void)
 {
+	uint32_t error;
 	//uint32_t a;
   /* USER CODE BEGIN 1 */
 
@@ -92,21 +93,26 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   initialise_monitor_handles();
-  uint16_t wrBuf[5]= {0x1111,0x2222,0x3333,0x4444,0x5555};
 
-  /* USER CODE END 2 */
 
-  /* Infinite loop */
-  FLASH_SetSectorAddrs(7, 0x08060000);
-  FLASH_WriteN(10, wrBuf, 5, DATA_TYPE_16);
-  /* USER CODE BEGIN WHILE */
-  printf("hello\n");
+#ifdef MAIN
+  printf("main is running\n");
   while (1)
   {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
   }
+#endif
+
+#ifdef FLASH_TEST
+  printf("flash is running\n");
+
+  if (main_flash())
+  {
+	  printf("error\n");
+  }
+#endif
+
+  /* USER CODE BEGIN WHILE */
+  while (1);
   /* USER CODE END 3 */
 }
 

@@ -1,7 +1,9 @@
 #ifndef __MY_FLASH_H
 #define __MY_FLASH_H
 
+#include "main.h"
 #include "stm32f4xx_hal.h"
+
 
 //Typedefs
 // data size

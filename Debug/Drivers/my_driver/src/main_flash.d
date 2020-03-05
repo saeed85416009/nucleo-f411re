@@ -1,5 +1,4 @@
-Drivers/my_driver/src/my_flash.o: ../Drivers/my_driver/src/my_flash.c \
- C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h \
+Drivers/my_driver/src/main_flash.o: ../Drivers/my_driver/src/main_flash.c \
  ../Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -26,9 +25,8 @@ Drivers/my_driver/src/my_flash.o: ../Drivers/my_driver/src/my_flash.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h \
  C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h
-
-C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h:
 
 ../Inc/main.h:
 
@@ -83,5 +81,7 @@ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h:
 
 C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h:

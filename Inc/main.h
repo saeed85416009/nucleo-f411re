@@ -30,6 +30,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 #include "my_flash.h"
+#include "coreApplication.h"
 #include "stdio.h"
 #include "string.h"
 /* Private includes ----------------------------------------------------------*/
