@@ -52,7 +52,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+extern void initialise_monitor_handles(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -66,6 +66,7 @@ static void MX_USART2_UART_Init(void);
   */
 int main(void)
 {
+	//uint32_t a;
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -90,11 +91,16 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+  initialise_monitor_handles();
+  uint16_t wrBuf[5]= {0x1111,0x2222,0x3333,0x4444,0x5555};
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
+  FLASH_SetSectorAddrs(7, 0x08060000);
+  FLASH_WriteN(10, wrBuf, 5, DATA_TYPE_16);
   /* USER CODE BEGIN WHILE */
+  printf("hello\n");
   while (1)
   {
     /* USER CODE END WHILE */
@@ -231,6 +237,15 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
 
   /* USER CODE END Error_Handler_Debug */
+}
+
+ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  /* Prevent unused argument(s) compilation warning */
+	 printf("button is pressed\n");
+  /* NOTE: This function Should not be modified, when the callback is needed,
+           the HAL_GPIO_EXTI_Callback could be implemented in the user file
+   */
 }
 
 #ifdef  USE_FULL_ASSERT
