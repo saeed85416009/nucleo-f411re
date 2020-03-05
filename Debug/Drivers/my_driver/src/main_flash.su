@@ -1,1 +1,2 @@
-main_flash.c:4:10:main_flash	24	static
+main_flash.c:5:10:main_flash	224	static
+main_flash.c:18:17:my_flash_TypeDefConf	16	static

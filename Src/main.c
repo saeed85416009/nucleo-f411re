@@ -66,7 +66,6 @@ extern void initialise_monitor_handles(void);
   */
 int main(void)
 {
-	uint32_t error;
 	//uint32_t a;
   /* USER CODE BEGIN 1 */
 

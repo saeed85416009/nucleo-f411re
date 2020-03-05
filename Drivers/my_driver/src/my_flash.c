@@ -20,28 +20,55 @@ functions:
 //Private variables
 // sector start address
 static uint32_t MY_SectorAddrs;
-static uint8_t MY_SectorNum;
+My_Flash_TypeDef hflash;
 
 /* Erase Sector */
 static void FLASH_EraseSector(void)
 {
 	HAL_FLASH_Unlock();
 	//Erase the required Flash sector
-	FLASH_Erase_Sector(MY_SectorNum, FLASH_VOLTAGE_RANGE_3);
+	FLASH_Erase_Sector(hflash.sector, FLASH_VOLTAGE_RANGE_3);
 	HAL_FLASH_Lock();
 }
 
-/* Set Sector Adress */
-void FLASH_SetSectorAddrs(uint8_t sector, uint32_t addrs)
-{
-	MY_SectorNum = sector;
-	MY_SectorAddrs = addrs;
+void Flash_SectConf(void){
+	switch (hflash.sector){
+	case FLASH_SECT0:
+		hflash.baseAddr=FLASH_ADDR_SECT0;
+		break;
+	case FLASH_SECT1:
+		hflash.baseAddr=FLASH_ADDR_SECT1;
+		break;
+	case FLASH_SECT2:
+		hflash.baseAddr=FLASH_ADDR_SECT2;
+		break;
+	case FLASH_SECT3:
+		hflash.baseAddr=FLASH_ADDR_SECT3;
+		break;
+	case FLASH_SECT4:
+		hflash.baseAddr=FLASH_ADDR_SECT4;
+		break;
+	case FLASH_SECT5:
+		hflash.baseAddr=FLASH_ADDR_SECT5;
+		break;
+	case FLASH_SECT6:
+		hflash.baseAddr=FLASH_ADDR_SECT6;
+		break;
+	case FLASH_SECT7:
+		hflash.baseAddr=FLASH_ADDR_SECT7;
+			break;
+	default:
+		break;
+			 }
+
 }
 
+
+
 /* Write Flash */
-void FLASH_WriteN(uint32_t idx, void *wrBuf, uint32_t Nsize, DataTypeDef dataType)
+void FLASH_WriteN(void *wrBuf, uint32_t Nsize)
 {
-	uint32_t flashAddress = MY_SectorAddrs + idx;
+	uint32_t flashAddress = hflash.baseAddr + hflash.sect_offset;
 
 	//Erase sector before write
 	FLASH_EraseSector();
@@ -49,7 +76,7 @@ void FLASH_WriteN(uint32_t idx, void *wrBuf, uint32_t Nsize, DataTypeDef dataTyp
 	//Unlock Flash
 	HAL_FLASH_Unlock();
 	//Write to Flash
-	switch(dataType)
+	switch(hflash.dataType)
 	{
 		case DATA_TYPE_8:
 				for(uint32_t i=0; i<Nsize; i++)
@@ -79,11 +106,11 @@ void FLASH_WriteN(uint32_t idx, void *wrBuf, uint32_t Nsize, DataTypeDef dataTyp
 	HAL_FLASH_Lock();
 }
 /* Read Flash */
-void FLASH_ReadN(uint32_t idx, void *rdBuf, uint32_t Nsize, DataTypeDef dataType)
+void FLASH_ReadN(void *rdBuf, uint32_t Nsize)
 {
-	uint32_t flashAddress = MY_SectorAddrs + idx;
+	uint32_t flashAddress = hflash.baseAddr + hflash.sect_offset;
 
-	switch(dataType)
+	switch(hflash.dataType)
 	{
 		case DATA_TYPE_8:
 				for(uint32_t i=0; i<Nsize; i++)
