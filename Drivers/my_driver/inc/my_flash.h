@@ -3,6 +3,8 @@
 
 #include "main.h"
 #include "stm32f4xx_hal.h"
+#include "coreApplication.h"
+#include "my_flash.h"
 
 #define FLASH_ADDR_SECT0     0x08000000
 #define FLASH_ADDR_SECT1     0x08004000

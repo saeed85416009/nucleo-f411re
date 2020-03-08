@@ -1,4 +1,4 @@
-#include "main.h"
+#include "main_flash.h"
 extern My_Flash_TypeDef hflash;
 static uint32_t my_flash_TypeDefConf(uint8_t sector, uint32_t sect_offset, DataTypeDef dataType);
 
@@ -25,12 +25,3 @@ static uint32_t my_flash_TypeDefConf(uint8_t sector, uint32_t sect_offset, DataT
 }
 
 
-
-/*
-typedef struct  {
-	uint8_t sector;
-	uint32_t baseAddr;
-	DataTypeDef dataType;
-	void *wrBuf;
-	void *rdBuf;
-}My_Flash_TypeDef;*/

@@ -19,7 +19,6 @@ functions:
 
 //Private variables
 // sector start address
-static uint32_t MY_SectorAddrs;
 My_Flash_TypeDef hflash;
 
 /* Erase Sector */

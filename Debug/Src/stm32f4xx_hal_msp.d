@@ -24,9 +24,17 @@ Src/stm32f4xx_hal_msp.o: ../Src/stm32f4xx_hal_msp.c ../Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_flash.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h \
  C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h \
- C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_lcd16x2.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_LCD16x2.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_timer.h \
+ C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_timer.h
 
 ../Inc/main.h:
 
@@ -80,8 +88,24 @@ Src/stm32f4xx_hal_msp.o: ../Src/stm32f4xx_hal_msp.c ../Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
+
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_flash.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h:
 
 C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_flash.h:
 
-C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/coreApplication.h:
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_lcd16x2.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_LCD16x2.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/main_timer.h:
+
+C:/ST_workspace/nucleo-f411re-Saeed/Drivers/my_driver/inc/my_timer.h:

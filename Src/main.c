@@ -41,6 +41,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -66,7 +68,6 @@ extern void initialise_monitor_handles(void);
   */
 int main(void)
 {
-	//uint32_t a;
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -90,9 +91,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+
   /* USER CODE BEGIN 2 */
   initialise_monitor_handles();
-
 
 #ifdef MAIN
   printf("main is running\n");
@@ -110,9 +111,29 @@ int main(void)
   }
 #endif
 
+#ifdef LCD_16x2_TEST
+  printf("flash is running\n");
+
+  if (main_lcd16x2())
+  {
+	  printf("error\n");
+  }
+#endif
+
+#ifdef TIMER_TEST
+  printf("flash is running\n");
+
+
+  if (main_timer())
+  {
+	  printf("error\n");
+  }
+#endif
+
   /* USER CODE BEGIN WHILE */
   while (1);
   /* USER CODE END 3 */
+
 }
 
 /**
@@ -136,7 +157,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 100;
+  RCC_OscInitStruct.PLL.PLLN = 68;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -152,11 +173,13 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
 }
+
+
 
 /**
   * @brief USART2 Initialization Function
@@ -209,6 +232,13 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, LCD_D0_Pin|LCD_D1_Pin|LCD_D2_Pin|LCD_D3_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin 
+                          |LCD_E_Pin|LCD_RS_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
@@ -221,6 +251,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LCD_D0_Pin LCD_D1_Pin LCD_D2_Pin LCD_D3_Pin */
+  GPIO_InitStruct.Pin = LCD_D0_Pin|LCD_D1_Pin|LCD_D2_Pin|LCD_D3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LCD_D4_Pin LCD_D5_Pin LCD_D6_Pin LCD_D7_Pin 
+                           LCD_E_Pin LCD_RS_Pin */
+  GPIO_InitStruct.Pin = LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin 
+                          |LCD_E_Pin|LCD_RS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
@@ -242,15 +288,6 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
 
   /* USER CODE END Error_Handler_Debug */
-}
-
- void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  /* Prevent unused argument(s) compilation warning */
-	 printf("button is pressed\n");
-  /* NOTE: This function Should not be modified, when the callback is needed,
-           the HAL_GPIO_EXTI_Callback could be implemented in the user file
-   */
 }
 
 #ifdef  USE_FULL_ASSERT
